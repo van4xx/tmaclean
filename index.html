@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotClean - Заказ уборки</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>BotClean</h1>
+            <p>Профессиональная уборка помещений</p>
+        </header>
+
+        <!-- Главное меню -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-buttons">
+                <button id="schedule-btn" class="primary-btn"><i class="fas fa-calendar-plus"></i> Назначить уборку</button>
+                <button id="my-cleanings-btn" class="primary-btn"><i class="fas fa-calendar-check"></i> Мои уборки</button>
+                <button id="reschedule-btn" class="primary-btn"><i class="fas fa-exchange-alt"></i> Перенести/отменить</button>
+                <button id="extend-btn" class="primary-btn"><i class="fas fa-sync-alt"></i> Продлить подписку</button>
+                <button id="support-btn" class="primary-btn"><i class="fas fa-headset"></i> Поддержка</button>
+            </div>
+        </div>
+
+        <!-- Экран выбора тарифа -->
+        <div id="tariff-screen" class="screen">
+            <h2><i class="fas fa-tag"></i> Выберите подходящий тариф</h2>
+            <div class="tariff-cards">
+                <div class="tariff-card" data-tariff="1">
+                    <h3><i class="fas fa-tint"></i> LIGHT</h3>
+                    <p>Базовая безлимитная уборка</p>
+                    <button class="details-btn"><i class="fas fa-info-circle"></i> Подробнее</button>
+                </div>
+                <div class="tariff-card" data-tariff="2">
+                    <h3><i class="fas fa-sparkles"></i> STANDARD</h3>
+                    <p>Расширенная безлимитная уборка</p>
+                    <button class="details-btn"><i class="fas fa-info-circle"></i> Подробнее</button>
+                </div>
+                <div class="tariff-card" data-tariff="3">
+                    <h3><i class="fas fa-crown"></i> PREMIUM</h3>
+                    <p>Глубокая уборка + окна + мебель</p>
+                    <button class="details-btn"><i class="fas fa-info-circle"></i> Подробнее</button>
+                </div>
+            </div>
+            <p class="note"><i class="fas fa-info-circle"></i> Все тарифы действуют 1 месяц. Уборка — не чаще 1 раза в день.</p>
+            <button class="back-btn">Назад</button>
+        </div>
+
+        <!-- Экран выбора даты уборки -->
+        <div id="date-screen" class="screen">
+            <h2><i class="fas fa-calendar-alt"></i> Выберите дату уборки</h2>
+            <div class="date-picker">
+                <div id="calendar"></div>
+            </div>
+            <p class="note"><i class="fas fa-exclamation-circle"></i> Можно выбрать дату не ранее завтрашнего дня</p>
+            <button class="back-btn">Назад</button>
+        </div>
+
+        <!-- Экран выбора времени -->
+        <div id="time-screen" class="screen">
+            <h2><i class="fas fa-clock"></i> Выберите время</h2>
+            <div class="time-slots">
+                <button class="time-slot">09:00</button>
+                <button class="time-slot">10:00</button>
+                <button class="time-slot">11:00</button>
+                <button class="time-slot">12:00</button>
+                <button class="time-slot">13:00</button>
+                <button class="time-slot">14:00</button>
+                <button class="time-slot">15:00</button>
+                <button class="time-slot">16:00</button>
+                <button class="time-slot">17:00</button>
+            </div>
+            <button class="back-btn">Назад</button>
+        </div>
+
+        <!-- Экран подтверждения -->
+        <div id="confirm-screen" class="screen">
+            <h2><i class="fas fa-check-circle"></i> Подтверждение заказа</h2>
+            <div class="confirm-details">
+                <p>Дата: <span id="selected-date"></span></p>
+                <p>Время: <span id="selected-time"></span></p>
+                <p>Тариф: <span id="selected-tariff"></span></p>
+            </div>
+            <button id="confirm-btn" class="primary-btn"><i class="fas fa-check"></i> Подтвердить</button>
+            <button id="edit-btn"><i class="fas fa-edit"></i> Изменить</button>
+            <button class="back-btn">Назад</button>
+        </div>
+
+        <!-- Экран "Мои уборки" -->
+        <div id="my-cleanings-screen" class="screen">
+            <h2><i class="fas fa-broom"></i> Мои уборки</h2>
+            <div id="cleanings-list" class="cleanings-list">
+                <!-- Сюда будут динамически добавляться уборки -->
+            </div>
+            <button class="back-btn">Назад</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
