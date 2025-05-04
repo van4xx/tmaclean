@@ -1,6 +1,6 @@
 {
   "short_name": "BotClean",
-  "name": "BotClean — Уборка по подписке",
+  "name": "BotClean - Профессиональная уборка",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#007bff",
+  "theme_color": "#3A66FF",
   "background_color": "#ffffff"
 } 

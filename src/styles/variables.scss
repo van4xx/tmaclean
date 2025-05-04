@@ -1,0 +1,70 @@
+// Основные цвета
+$primary-color: #3A66FF;
+$secondary-color: #4AB2F9;
+$accent-color: #FF4545;
+$success-color: #2DD36F;
+$warning-color: #FFC107;
+$error-color: #EB445A;
+
+// Нейтральные цвета
+$dark: #1D2733;
+$gray-900: #2F3B4B;
+$gray-800: #4A5567;
+$gray-700: #677489;
+$gray-600: #9DACBF;
+$gray-500: #C5D0E0;
+$gray-400: #DAE2EE;
+$gray-300: #E5EBF3;
+$gray-200: #F0F4F9;
+$gray-100: #F7FAFF;
+$white: #FFFFFF;
+
+// Тени
+$shadow-sm: 0 1px 2px rgba(29, 39, 51, 0.05);
+$shadow-md: 0 4px 8px rgba(29, 39, 51, 0.1);
+$shadow-lg: 0 8px 16px rgba(29, 39, 51, 0.15);
+$shadow-xl: 0 16px 32px rgba(29, 39, 51, 0.15);
+
+// Радиусы
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// Типографика
+$font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-md: 1rem;      // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-2xl: 1.5rem;   // 24px
+$font-size-3xl: 2rem;     // 32px
+
+// Жирность шрифта
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Размеры экрана
+$screen-xs: 375px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+// Анимации
+$transition-fast: 150ms ease;
+$transition-normal: 250ms ease;
+$transition-slow: 350ms ease;
+
+// Z-индексы
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070; 

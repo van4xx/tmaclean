@@ -1,78 +1,95 @@
-# BotClean - Telegram Mini App
+# BotClean - Telegram Mini App for Cleaning Service
 
-Это Telegram Mini App для бота по заказу уборки квартир BotClean.
+A modern web application integrated with Telegram Mini App API for a subscription-based apartment cleaning service.
 
-## Функциональность
+## Features
 
-- Просмотр и выбор тарифов
-- Назначение уборки с выбором даты и времени
-- Просмотр запланированных уборок
-- Отмена и перенос уборок
-- Интеграция с Telegram ботом
+- **Telegram Authentication**: Automatic authentication using Telegram user data
+- **Subscription Management**: Choose a plan, view current subscription information
+- **Cleaning Scheduling**: Interactive date and time selection for cleaning
+- **Cleaning Management**: View, reschedule, and cancel scheduled cleanings
+- **User Profile**: View and edit personal information
+- **Responsive Design**: Optimized for mobile devices and Telegram Mini App
 
-## Настройка и деплой
+## Technologies
 
-### Шаг 1: Загрузка файлов на хостинг
+- **React**: User interface library
+- **TypeScript**: Strong typing for reliable code
+- **React Router**: Routing in the application
+- **Axios**: HTTP client for working with API
+- **Framer Motion**: Animations for improved UX
+- **SCSS**: Styling using a preprocessor
+- **Telegram Mini App SDK**: Integration with Telegram API
+- **Date-fns**: Easy date manipulation
 
-Загрузите все файлы из директории `botclean-webapp` на ваш хостинг. Убедитесь, что файлы доступны по HTTPS.
+## Installation and Running
 
-### Шаг 2: Установка URL в BotFather
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file with environment variables:
+   ```
+   REACT_APP_API_URL=https://api.botclean.example/api
+   ```
+4. Run the application in development mode:
+   ```
+   npm start
+   ```
+5. To build the production version:
+   ```
+   npm run build
+   ```
 
-1. Откройте BotFather в Telegram (@BotFather)
-2. Отправьте команду `/mybots`
-3. Выберите вашего бота
-4. Нажмите "Bot Settings" > "Menu Button" > "Configure menu button"
-5. Отправьте текст для кнопки, например "Открыть приложение"
-6. Отправьте URL вашего веб-приложения (где вы разместили файлы)
+## Integration with Telegram
 
-### Шаг 3: Обновление URL в файле бота
+The application integrates with Telegram Bot and uses Telegram Mini App for displaying in the Telegram client. 
 
-В файле `handlers/registration.js` найдите строку:
+### Setup in BotFather
 
-```javascript
-const webAppUrl = 'https://your-webapp-url.com';
-```
+1. Create a bot through [@BotFather](https://t.me/botfather)
+2. Enable Web App support:
+   - `/mybots` → Select the bot → Bot Settings → Menu Button → Configure Menu Button
+   - Use the URL of your published application for configuration
 
-Замените URL на фактический адрес, где размещено ваше веб-приложение.
+### Data Transfer
 
-### Шаг 4: Проверка работы приложения
+The application sends data to the bot through the `sendData` method, which sends a serialized JSON string with actions and parameters.
 
-1. Перезапустите бота
-2. Откройте диалог с ботом
-3. Нажмите на кнопку "Открыть приложение" в меню
-4. Проверьте, что веб-приложение открывается и работает корректно
-
-## Интеграция с ботом
-
-Приложение отправляет данные боту через метод `tg.sendData()`. Бот обрабатывает эти данные в обработчике `web_app_data`. 
-
-Отправляемые данные имеют следующий формат:
-
-```json
-{
-  "action": "schedule_cleaning",
-  "date": "2023-05-15T07:00:00.000Z",
-  "time": "10:00",
-  "tariff": "2"
-}
-```
-
-## Разработка
-
-### Структура файлов
-
-- `index.html` - Основной HTML файл
-- `styles.css` - Стили приложения
-- `app.js` - JavaScript код
-
-### Локальное тестирование
-
-Для локального тестирования можно использовать любой HTTP-сервер, например:
+## Project Structure
 
 ```
-npx http-server ./botclean-webapp
+src/
+  ├── components/       # Reusable components
+  ├── context/          # React contexts (authentication, Telegram)
+  ├── hooks/            # Custom hooks
+  ├── pages/            # Main application pages
+  ├── services/         # API clients and services
+  ├── styles/           # SCSS styles
+  ├── utils/            # Helper functions
+  ├── App.tsx           # Root component
+  └── index.tsx         # Entry point
 ```
 
-Затем открыть приложение в браузере по адресу `http://localhost:8080`.
+## Deployment
 
-> **Примечание**: Некоторые функции Telegram Mini App API могут не работать при локальном тестировании. 
+For deployment, it is recommended to use:
+
+1. **Netlify**: Easy deployment through GitHub with automatic updates support
+2. **Vercel**: Great integration with React and support for previews for each PR
+3. **GitHub Pages**: Free hosting for static sites
+
+## Contributing to the Project
+
+1. Fork the repository
+2. Create a branch with the new feature
+3. Submit a pull request
+
+## License
+
+MIT
+
+---
+
+Developed with 💙 for BotClean

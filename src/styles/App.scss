@@ -1,0 +1,209 @@
+@import 'variables';
+
+.app {
+  position: relative;
+  
+  /* Добавляем красивые переходы между страницами с помощью framer-motion */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  /* Общие компоненты и элементы */
+  .page-container {
+    padding: 16px;
+  }
+  
+  .page-title {
+    margin-bottom: 1.5rem;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--tg-theme-text-color, $dark);
+  }
+  
+  .page-subtitle {
+    margin-bottom: 1rem;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: var(--tg-theme-hint-color, $gray-700);
+  }
+  
+  /* Кнопки */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: $radius-md;
+    font-weight: $font-weight-medium;
+    transition: all $transition-normal;
+    text-align: center;
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .btn-icon {
+      margin-right: 0.5rem;
+    }
+  }
+  
+  .btn-primary {
+    background-color: var(--tg-theme-button-color, $primary-color);
+    color: var(--tg-theme-button-text-color, $white);
+    
+    &:hover:not(:disabled) {
+      background-color: darken($primary-color, 5%);
+    }
+  }
+  
+  .btn-secondary {
+    background-color: $gray-200;
+    color: $dark;
+    
+    &:hover:not(:disabled) {
+      background-color: $gray-300;
+    }
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--tg-theme-button-color, $primary-color);
+    color: var(--tg-theme-button-color, $primary-color);
+    
+    &:hover:not(:disabled) {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+  
+  .btn-accent {
+    background-color: $accent-color;
+    color: $white;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($accent-color, 5%);
+    }
+  }
+  
+  .btn-block {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* Формы и инпуты */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: $font-weight-medium;
+    color: var(--tg-theme-hint-color, $gray-700);
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid $gray-300;
+    border-radius: $radius-md;
+    background-color: var(--tg-theme-bg-color, $white);
+    color: var(--tg-theme-text-color, $dark);
+    transition: border-color $transition-normal;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+    
+    &::placeholder {
+      color: $gray-500;
+    }
+    
+    &.error {
+      border-color: $error-color;
+    }
+  }
+  
+  .form-error {
+    margin-top: 0.5rem;
+    color: $error-color;
+    font-size: $font-size-sm;
+  }
+  
+  /* Карточки */
+  .card {
+    background-color: var(--tg-theme-bg-color, $white);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    transition: transform $transition-normal, box-shadow $transition-normal;
+    margin-bottom: 1rem;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+    
+    .card-header {
+      padding: 1rem;
+      border-bottom: 1px solid $gray-200;
+    }
+    
+    .card-body {
+      padding: 1rem;
+    }
+    
+    .card-footer {
+      padding: 1rem;
+      border-top: 1px solid $gray-200;
+    }
+  }
+  
+  /* Значки */
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    
+    &.badge-primary {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+    
+    &.badge-success {
+      background-color: rgba($success-color, 0.1);
+      color: $success-color;
+    }
+    
+    &.badge-warning {
+      background-color: rgba($warning-color, 0.1);
+      color: darken($warning-color, 15%);
+    }
+    
+    &.badge-error {
+      background-color: rgba($error-color, 0.1);
+      color: $error-color;
+    }
+  }
+} 

@@ -1,0 +1,278 @@
+@import 'variables';
+
+.schedule-page {
+  position: relative;
+  padding: 1.5rem;
+  
+  .back-button {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--tg-theme-button-color, $primary-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+    }
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--tg-theme-text-color, $dark);
+    margin-top: 2rem;
+  }
+  
+  .instructions {
+    text-align: center;
+    color: var(--tg-theme-hint-color, $gray-600);
+    margin-bottom: 1.5rem;
+  }
+  
+  .date-selection {
+    .datepicker-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      
+      .calendar-icon {
+        font-size: 1.5rem;
+        color: $primary-color;
+        margin-bottom: 0.5rem;
+      }
+      
+      .react-datepicker {
+        border: none;
+        box-shadow: $shadow-md;
+        font-family: $font-family;
+        width: 100%;
+        max-width: 320px;
+        border-radius: $radius-lg;
+        
+        &__header {
+          background-color: var(--tg-theme-bg-color, $white);
+          border-bottom: 1px solid $gray-200;
+          padding: 0.5rem 0;
+          border-top-left-radius: $radius-lg;
+          border-top-right-radius: $radius-lg;
+        }
+        
+        &__month {
+          margin: 0.5rem;
+        }
+        
+        &__day-name {
+          color: var(--tg-theme-hint-color, $gray-600);
+          font-weight: $font-weight-medium;
+          margin: 0.25rem;
+        }
+        
+        &__day {
+          margin: 0.25rem;
+          border-radius: $radius-md;
+          color: var(--tg-theme-text-color, $dark);
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.1);
+          }
+          
+          &--selected {
+            background-color: $primary-color;
+            color: $white;
+            
+            &:hover {
+              background-color: darken($primary-color, 5%);
+            }
+          }
+          
+          &--disabled {
+            color: $gray-400;
+            text-decoration: line-through;
+          }
+        }
+        
+        &__navigation {
+          top: 0.5rem;
+          
+          &--previous {
+            left: 0.5rem;
+          }
+          
+          &--next {
+            right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .time-selection {
+    .selected-date {
+      text-align: center;
+      font-weight: $font-weight-medium;
+      color: var(--tg-theme-text-color, $dark);
+      margin-bottom: 1.5rem;
+    }
+    
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      
+      .time-slot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border-radius: $radius-md;
+        background-color: var(--tg-theme-bg-color, $white);
+        color: var(--tg-theme-text-color, $dark);
+        box-shadow: $shadow-sm;
+        transition: all $transition-normal;
+        cursor: pointer;
+        
+        .time-icon {
+          color: $primary-color;
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-md;
+        }
+        
+        &.selected {
+          background-color: $primary-color;
+          color: $white;
+          
+          .time-icon {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  
+  .confirmation {
+    .booking-details {
+      background-color: var(--tg-theme-bg-color, $white);
+      border-radius: $radius-lg;
+      padding: 1.5rem;
+      box-shadow: $shadow-md;
+      margin-bottom: 2rem;
+      
+      .detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $gray-200;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        .label {
+          color: var(--tg-theme-hint-color, $gray-600);
+          font-weight: $font-weight-medium;
+        }
+        
+        .value {
+          color: var(--tg-theme-text-color, $dark);
+          font-weight: $font-weight-semibold;
+        }
+      }
+    }
+    
+    .actions {
+      margin-top: 1.5rem;
+    }
+  }
+  
+  .no-subscription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    
+    h2 {
+      margin-top: 0;
+    }
+    
+    p {
+      color: var(--tg-theme-hint-color, $gray-600);
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    
+    .success-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background-color: $success-color;
+      color: $white;
+      border-radius: 50%;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    h2 {
+      margin-top: 0;
+      color: $success-color;
+    }
+    
+    p {
+      color: var(--tg-theme-text-color, $dark);
+      font-size: $font-size-lg;
+      margin-bottom: 1rem;
+    }
+    
+    .redirect-message {
+      font-size: $font-size-sm;
+      color: var(--tg-theme-hint-color, $gray-600);
+      margin-top: 2rem;
+    }
+  }
+  
+  .error-message {
+    color: $error-color;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: $font-size-sm;
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: $screen-sm) {
+  .schedule-page {
+    padding: 1rem;
+    
+    .time-selection {
+      .time-slots {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+} 

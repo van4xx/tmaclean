@@ -1,0 +1,216 @@
+@import 'variables';
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  
+  .home-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h1 {
+      color: var(--tg-theme-text-color, $dark);
+      font-size: 2.5rem;
+      font-weight: $font-weight-bold;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(45deg, $primary-color, $secondary-color);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      color: var(--tg-theme-hint-color, $gray-600);
+      font-size: $font-size-lg;
+    }
+  }
+  
+  .subscription-info {
+    background: linear-gradient(135deg, lighten($primary-color, 30%), lighten($secondary-color, 25%));
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: $shadow-md;
+    
+    .tariff-name {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $primary-color;
+      margin-bottom: 0.75rem;
+    }
+    
+    .subscription-details {
+      p {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        
+        .info-label {
+          color: var(--tg-theme-hint-color, $gray-700);
+        }
+        
+        .info-value {
+          font-weight: $font-weight-semibold;
+          color: var(--tg-theme-text-color, $dark);
+        }
+      }
+    }
+  }
+  
+  .cta-container {
+    background: linear-gradient(135deg, rgba($primary-color, 0.1), rgba($secondary-color, 0.1));
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: var(--tg-theme-text-color, $dark);
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: var(--tg-theme-hint-color, $gray-700);
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--tg-theme-bg-color, $white);
+      border-radius: $radius-lg;
+      padding: 1.5rem;
+      box-shadow: $shadow-sm;
+      transition: transform $transition-normal, box-shadow $transition-normal;
+      cursor: pointer;
+      
+      &:hover, &:active {
+        transform: translateY(-3px);
+        box-shadow: $shadow-md;
+      }
+      
+      .menu-icon {
+        font-size: 2rem;
+        color: $primary-color;
+        margin-bottom: 1rem;
+        
+        svg {
+          filter: drop-shadow(0 2px 3px rgba($primary-color, 0.3));
+        }
+      }
+      
+      p {
+        font-weight: $font-weight-medium;
+        color: var(--tg-theme-text-color, $dark);
+        text-align: center;
+      }
+    }
+  }
+  
+  .next-cleaning {
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: var(--tg-theme-text-color, $dark);
+      margin-bottom: 1rem;
+    }
+    
+    .cleaning-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--tg-theme-bg-color, $white);
+      border-radius: $radius-lg;
+      padding: 1rem;
+      box-shadow: $shadow-md;
+      
+      .cleaning-date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .day {
+          font-size: $font-size-2xl;
+          font-weight: $font-weight-bold;
+          color: $primary-color;
+        }
+        
+        .month {
+          font-size: $font-size-sm;
+          color: var(--tg-theme-hint-color, $gray-600);
+        }
+      }
+      
+      .cleaning-time {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: var(--tg-theme-text-color, $dark);
+      }
+      
+      .cleaning-actions {
+        .btn {
+          padding: 0.5rem 1rem;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: $screen-sm) {
+  .home-page {
+    padding: 1rem;
+    
+    .home-header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    .menu-grid {
+      gap: 0.75rem;
+      
+      .menu-item {
+        padding: 1rem;
+        
+        .menu-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    
+    .next-cleaning {
+      .cleaning-card {
+        flex-wrap: wrap;
+        
+        .cleaning-date, .cleaning-time {
+          margin-bottom: 0.5rem;
+        }
+        
+        .cleaning-actions {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 0.5rem;
+          
+          .btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+} 
