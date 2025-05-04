@@ -16,11 +16,8 @@ api.interceptors.request.use(
   (config) => {
     // Проверяем, есть ли Telegram initial data в localStorage
     const telegramInitData = localStorage.getItem('tg_init_data');
-    if (telegramInitData) {
-      config.headers = {
-        ...config.headers,
-        'x-telegram-init-data': telegramInitData,
-      };
+    if (telegramInitData && config.headers) {
+      config.headers['x-telegram-init-data'] = telegramInitData;
     }
     return config;
   },

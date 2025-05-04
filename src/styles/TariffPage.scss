@@ -1,0 +1,111 @@
+@import 'variables';
+
+.tariff-page {
+  padding: 1.5rem;
+  
+  .page-subtitle {
+    text-align: center;
+    color: var(--tg-theme-hint-color, $gray-600);
+    margin-bottom: 2rem;
+  }
+  
+  .tariff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .tariff-card {
+    background-color: var(--tg-theme-bg-color, $white);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    transition: transform $transition-normal, box-shadow $transition-normal;
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+    
+    .tariff-header {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      color: $white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      h2 {
+        margin: 0;
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+      }
+      
+      .price {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+      }
+    }
+    
+    .tariff-body {
+      padding: 1.5rem;
+      
+      .description {
+        color: var(--tg-theme-hint-color, $gray-700);
+        margin-bottom: 1rem;
+      }
+      
+      .cleanings {
+        font-size: $font-size-md;
+        color: var(--tg-theme-text-color, $dark);
+        
+        strong {
+          color: $primary-color;
+          font-size: $font-size-lg;
+        }
+      }
+    }
+    
+    .btn {
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .error-message {
+    color: $error-color;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .no-tariffs {
+    text-align: center;
+    color: var(--tg-theme-hint-color, $gray-600);
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .tariff-page {
+    padding: 1rem;
+    
+    .tariff-card {
+      .tariff-header {
+        padding: 1rem;
+        
+        h2 {
+          font-size: $font-size-lg;
+        }
+        
+        .price {
+          font-size: $font-size-md;
+        }
+      }
+      
+      .tariff-body {
+        padding: 1rem;
+      }
+    }
+  }
+} 

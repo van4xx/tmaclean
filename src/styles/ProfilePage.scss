@@ -1,0 +1,96 @@
+@import 'variables';
+
+.profile-page {
+  padding: 1.5rem;
+  
+  .error-message {
+    color: $error-color;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: $radius-md;
+    background-color: rgba($error-color, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .success-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $success-color;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: $radius-md;
+    background-color: rgba($success-color, 0.1);
+    margin-bottom: 1.5rem;
+    
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .profile-info {
+    background-color: var(--tg-theme-bg-color, $white);
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    box-shadow: $shadow-md;
+    
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid $gray-200;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &.tariff-info {
+        margin-top: 1rem;
+        border-top: 1px solid $gray-200;
+        padding-top: 1rem;
+      }
+      
+      .info-label {
+        color: var(--tg-theme-hint-color, $gray-600);
+        font-weight: $font-weight-medium;
+      }
+      
+      .info-value {
+        color: var(--tg-theme-text-color, $dark);
+        font-weight: $font-weight-semibold;
+      }
+    }
+  }
+  
+  .profile-form {
+    .input-with-icon {
+      position: relative;
+      
+      .input-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $gray-500;
+      }
+      
+      .form-input {
+        padding-left: 2.5rem;
+      }
+    }
+    
+    .form-actions {
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .profile-page {
+    padding: 1rem;
+    
+    .profile-info {
+      padding: 1rem;
+    }
+  }
+} 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import { format, addDays, isAfter, isBefore, startOfDay } from 'date-fns';
+import { addDays, startOfDay } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { FaRegCalendarAlt, FaClock, FaArrowLeft, FaCheck } from 'react-icons/fa';
 import { useAuth } from '../hooks/useAuth';
@@ -230,7 +230,7 @@ const SchedulePage: React.FC = () => {
               locale="ru"
               dateFormat="dd MMMM yyyy"
               inline
-              filterDate={(date) => !isDateBooked(date)}
+              filterDate={(date: Date) => !isDateBooked(date)}
             />
           </div>
           

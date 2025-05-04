@@ -1,0 +1,141 @@
+@import 'variables';
+
+.my-cleanings-page {
+  padding: 1.5rem;
+  
+  .error-message {
+    color: $error-color;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .cleanings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cleaning-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--tg-theme-bg-color, $white);
+    border-radius: $radius-lg;
+    padding: 1.25rem;
+    box-shadow: $shadow-md;
+    transition: transform $transition-normal;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+    
+    &.cancelled {
+      opacity: 0.6;
+    }
+    
+    .cleaning-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .cleaning-details {
+      flex: 1;
+      
+      .cleaning-date {
+        font-weight: $font-weight-semibold;
+        color: var(--tg-theme-text-color, $dark);
+        margin-bottom: 0.25rem;
+      }
+      
+      .cleaning-time {
+        color: $primary-color;
+        font-weight: $font-weight-bold;
+        margin-bottom: 0.25rem;
+      }
+      
+      .cleaning-status {
+        font-size: $font-size-sm;
+        color: var(--tg-theme-hint-color, $gray-600);
+        
+        .status-запланирована {
+          color: $primary-color;
+        }
+        
+        .status-завершена {
+          color: $success-color;
+        }
+        
+        .status-отменена {
+          color: $error-color;
+        }
+      }
+    }
+    
+    .cleaning-actions {
+      display: flex;
+      gap: 0.5rem;
+      
+      .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: $radius-full;
+        transition: background-color $transition-normal;
+        
+        &.reschedule {
+          color: $primary-color;
+          background-color: rgba($primary-color, 0.1);
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.2);
+          }
+        }
+        
+        &.cancel {
+          color: $error-color;
+          background-color: rgba($error-color, 0.1);
+          
+          &:hover {
+            background-color: rgba($error-color, 0.2);
+          }
+        }
+      }
+    }
+  }
+  
+  .no-cleanings {
+    text-align: center;
+    padding: 2rem 0;
+    
+    p {
+      color: var(--tg-theme-hint-color, $gray-600);
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .my-cleanings-page {
+    padding: 1rem;
+    
+    .cleaning-card {
+      padding: 1rem;
+      
+      .cleaning-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+    }
+  }
+} 

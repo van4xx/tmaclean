@@ -18,7 +18,7 @@ import './styles/App.scss';
 
 function App() {
   const { user, loading } = useAuth();
-  const { webApp, initData } = useTelegram();
+  const { webApp } = useTelegram();
   const navigate = useNavigate();
 
   useEffect(() => {
