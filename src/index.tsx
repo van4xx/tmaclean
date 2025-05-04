@@ -7,8 +7,13 @@ import { TelegramProvider } from './context/TelegramContext';
 import './styles/index.scss';
 
 // Инициализация Telegram Mini App
-window.Telegram.WebApp.expand();
-window.Telegram.WebApp.enableClosingConfirmation();
+if (window.Telegram && window.Telegram.WebApp) {
+  window.Telegram.WebApp.expand();
+  window.Telegram.WebApp.enableClosingConfirmation();
+  console.log('Telegram WebApp successfully initialized');
+} else {
+  console.warn('Telegram WebApp not available, running in browser mode');
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

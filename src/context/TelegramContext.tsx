@@ -102,7 +102,74 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
       setColorScheme(tgWebApp.colorScheme);
       setThemeParams(tgWebApp.themeParams);
     } else {
-      console.error('Telegram WebApp не обнаружен');
+      console.warn('Telegram WebApp не обнаружен, используется мок для разработки');
+      
+      // Создаем моковые данные для тестирования вне Telegram
+      const mockUser = {
+        id: 12345678,
+        first_name: "Тестовый",
+        last_name: "Пользователь",
+        username: "testuser",
+        language_code: "ru"
+      };
+      
+      // Создаем мок WebApp API
+      const mockWebApp = {
+        initData: "mock_init_data",
+        initDataUnsafe: {
+          user: mockUser,
+          auth_date: Math.floor(Date.now() / 1000),
+          hash: "mock_hash"
+        },
+        BackButton: {
+          isVisible: false,
+          show: () => console.log('BackButton.show called'),
+          hide: () => console.log('BackButton.hide called'),
+          onClick: (callback: () => void) => console.log('BackButton.onClick registered')
+        },
+        MainButton: {
+          text: "",
+          color: "#3A66FF",
+          textColor: "#FFFFFF",
+          isVisible: false,
+          isActive: true,
+          isProgressVisible: false,
+          show: () => console.log('MainButton.show called'),
+          hide: () => console.log('MainButton.hide called'),
+          enable: () => console.log('MainButton.enable called'),
+          disable: () => console.log('MainButton.disable called'),
+          showProgress: (leaveActive: boolean) => console.log('MainButton.showProgress called'),
+          hideProgress: () => console.log('MainButton.hideProgress called'),
+          setText: (text: string) => console.log('MainButton.setText called with', text),
+          onClick: (callback: () => void) => console.log('MainButton.onClick registered'),
+          offClick: (callback: () => void) => console.log('MainButton.offClick called')
+        },
+        HapticFeedback: {
+          impactOccurred: (style: string) => console.log('HapticFeedback.impactOccurred called'),
+          notificationOccurred: (type: string) => console.log('HapticFeedback.notificationOccurred called'),
+          selectionChanged: () => console.log('HapticFeedback.selectionChanged called')
+        },
+        colorScheme: 'light' as 'light' | 'dark',
+        themeParams: {
+          bg_color: "#FFFFFF",
+          text_color: "#1D2733",
+          hint_color: "#9DACBF",
+          link_color: "#3A66FF",
+          button_color: "#3A66FF",
+          button_text_color: "#FFFFFF"
+        },
+        expand: () => console.log('WebApp.expand called'),
+        enableClosingConfirmation: () => console.log('WebApp.enableClosingConfirmation called'),
+        ready: () => console.log('WebApp.ready called'),
+        close: () => console.log('WebApp.close called'),
+        sendData: (data: string) => console.log('WebApp.sendData called with', data)
+      } as TelegramWebApp;
+      
+      setWebApp(mockWebApp);
+      setUser(mockUser);
+      setInitData("mock_init_data");
+      setColorScheme('light');
+      setThemeParams(mockWebApp.themeParams);
     }
   }, []);
 

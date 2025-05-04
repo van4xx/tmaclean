@@ -117,17 +117,21 @@ const SchedulePage: React.FC = () => {
       scheduledDate.setHours(hours, minutes, 0, 0);
       
       // Отправляем данные в Telegram Bot
-      sendData({
-        action: 'schedule_cleaning',
-        date: scheduledDate.toISOString(),
-        time: selectedTime
-      });
+      if (webApp && sendData) {
+        sendData({
+          action: 'schedule_cleaning',
+          date: scheduledDate.toISOString(),
+          time: selectedTime
+        });
+      }
       
-      // Также отправляем запрос на сервер через API
-      await cleaningAPI.scheduleCleaning({
+      // Отправляем запрос на сервер через API
+      const response = await cleaningAPI.scheduleCleaning({
         date: scheduledDate.toISOString(),
         time: selectedTime
       });
+
+      console.log('Cleaning scheduled successfully:', response.data);
       
       setSuccess(true);
     } catch (err) {

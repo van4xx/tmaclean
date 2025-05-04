@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, ReactNode } from 'react';
 import { useTelegram } from '../hooks/useTelegram';
-import { api } from '../services/api';
 
 interface UserType {
   chatId: number;
@@ -49,34 +48,68 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Функция для создания демо-пользователя из Telegram WebApp
+const createMockUserFromTelegram = (telegramUser: any): UserType => {
+  // Используем mockData для демонстрации интерфейса
+  const mockCleanings = [
+    { 
+      date: new Date(Date.now() + 86400000 * 2).toISOString(), // через 2 дня
+      status: 'запланирована' 
+    },
+    { 
+      date: new Date(Date.now() + 86400000 * 9).toISOString(), // через 9 дней
+      status: 'запланирована' 
+    },
+    { 
+      date: new Date(Date.now() - 86400000 * 5).toISOString(), // 5 дней назад
+      status: 'завершена' 
+    }
+  ];
+
+  return {
+    chatId: telegramUser.id,
+    name: `${telegramUser.first_name} ${telegramUser.last_name || ''}`.trim(),
+    phone: '+7XXXXXXXXXX', // Заглушка номера телефона
+    apartmentArea: 75, // Заглушка площади квартиры
+    address: 'г. Москва, ул. Примерная, д. 123, кв. 45', // Заглушка адреса
+    tariff: {
+      name: 'Стандарт',
+      basePrice: 4000,
+      finalPrice: 4500,
+      cleaningsPerMonth: 2
+    },
+    subscription: {
+      active: true,
+      endDate: new Date(Date.now() + 86400000 * 30).toISOString(), // 30 дней вперед
+      remainingCleanings: 3
+    },
+    cleanings: mockCleanings
+  };
+};
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { initData, user: telegramUser } = useTelegram();
+  const { user: telegramUser, initData } = useTelegram();
 
   useEffect(() => {
-    // Когда компонент монтируется, проверяем текущую сессию
+    // Проверка авторизации через Telegram WebApp
     const checkAuth = async () => {
-      if (!initData) {
+      console.log('Checking auth with Telegram user:', telegramUser);
+      
+      if (!telegramUser) {
+        console.log('No Telegram user found');
         setLoading(false);
         return;
       }
 
-      console.log('Checking auth with initData:', initData);
-      
       try {
-        console.log('Making API request to /user/me');
-        const response = await api.get('/user/me', {
-          headers: {
-            'x-telegram-init-data': initData
-          }
-        });
-        console.log('Auth response:', response.data);
-
-        if (response.data?.user) {
-          setUser(response.data.user);
-        }
+        // В реальном проекте здесь был бы запрос к серверу
+        // Но так как сервер не реализован для TMA, используем моки
+        const mockUser = createMockUserFromTelegram(telegramUser);
+        console.log('Created mock user:', mockUser);
+        setUser(mockUser);
       } catch (err) {
         console.error('Ошибка при проверке аутентификации', err);
         setError('Не удалось войти. Пожалуйста, попробуйте снова.');
@@ -86,7 +119,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     };
 
     checkAuth();
-  }, [initData]);
+  }, [telegramUser, initData]);
 
   const login = async (phone: string) => {
     if (!telegramUser) {
@@ -96,22 +129,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     setLoading(true);
     try {
-      const response = await api.post('/user/login', {
-        phone,
-        telegramId: telegramUser.id
-      }, {
-        headers: {
-          'x-telegram-init-data': initData
-        }
-      });
-
-      if (response.data?.user) {
-        setUser(response.data.user);
-      }
+      // Имитация логина
+      setTimeout(() => {
+        const mockUser = createMockUserFromTelegram(telegramUser);
+        mockUser.phone = phone;
+        setUser(mockUser);
+        setLoading(false);
+      }, 1000);
     } catch (err) {
       console.error('Ошибка при входе', err);
       setError('Не удалось войти. Пожалуйста, попробуйте снова.');
-    } finally {
       setLoading(false);
     }
   };
@@ -124,22 +151,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     setLoading(true);
     try {
-      const response = await api.post('/user/register', {
-        ...userData,
-        chatId: telegramUser.id
-      }, {
-        headers: {
-          'x-telegram-init-data': initData
-        }
-      });
-
-      if (response.data?.user) {
-        setUser(response.data.user);
-      }
+      // Имитация регистрации
+      setTimeout(() => {
+        const mockUser = createMockUserFromTelegram(telegramUser);
+        setUser({
+          ...mockUser,
+          ...userData,
+        });
+        setLoading(false);
+      }, 1000);
     } catch (err) {
       console.error('Ошибка при регистрации', err);
       setError('Не удалось зарегистрироваться. Пожалуйста, попробуйте снова.');
-    } finally {
       setLoading(false);
     }
   };
@@ -152,19 +175,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     setLoading(true);
     try {
-      const response = await api.put('/user/update', userData, {
-        headers: {
-          'x-telegram-init-data': initData
-        }
-      });
-
-      if (response.data?.user) {
-        setUser(response.data.user);
-      }
+      // Имитация обновления пользователя
+      setTimeout(() => {
+        setUser({
+          ...user,
+          ...userData,
+        });
+        setLoading(false);
+      }, 1000);
     } catch (err) {
       console.error('Ошибка при обновлении пользователя', err);
       setError('Не удалось обновить данные. Пожалуйста, попробуйте снова.');
-    } finally {
       setLoading(false);
     }
   };
@@ -172,15 +193,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = async () => {
     setLoading(true);
     try {
-      await api.post('/user/logout', {}, {
-        headers: {
-          'x-telegram-init-data': initData
-        }
-      });
-      setUser(null);
+      // Имитация логаута
+      setTimeout(() => {
+        setUser(null);
+        setLoading(false);
+      }, 500);
     } catch (err) {
       console.error('Ошибка при выходе', err);
-    } finally {
       setLoading(false);
     }
   };
