@@ -63,12 +63,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return;
       }
 
+      console.log('Checking auth with initData:', initData);
+      
       try {
+        console.log('Making API request to /user/me');
         const response = await api.get('/user/me', {
           headers: {
             'x-telegram-init-data': initData
           }
         });
+        console.log('Auth response:', response.data);
 
         if (response.data?.user) {
           setUser(response.data.user);

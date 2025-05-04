@@ -92,11 +92,17 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
     // Проверяем, доступен ли Telegram WebApp API
     if (window.Telegram && window.Telegram.WebApp) {
       const tgWebApp = window.Telegram.WebApp;
+      console.log('Telegram WebApp initialized', { 
+        initData: tgWebApp.initData,
+        user: tgWebApp.initDataUnsafe?.user
+      });
       setWebApp(tgWebApp);
       setUser(tgWebApp.initDataUnsafe?.user || null);
       setInitData(tgWebApp.initData);
       setColorScheme(tgWebApp.colorScheme);
       setThemeParams(tgWebApp.themeParams);
+    } else {
+      console.error('Telegram WebApp не обнаружен');
     }
   }, []);
 
